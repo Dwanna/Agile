@@ -6,49 +6,134 @@ import org.example.Service.ServiceImpl;
 import java.util.Scanner;
 
 
-
 public class MainClass {
-	static Scanner sc = new Scanner(System.in);
-	static ServiceImpl service = new ServiceImpl();
+    static Scanner sc = new Scanner(System.in);
+    static ServiceImpl service = new ServiceImpl();
+    static int count=0;
 
-	public static void main(String args[]) {
-		System.out.println("Select an Option");
-		System.out.println("1.Login for manager");
+    public static void main(String args[]) {
+        System.out.println("Select an Option");
+        System.out.println("Press 1.Login for manager");
+        System.out.println("Press 2.Exit");
 
-		int choice = sc.nextInt();
-		if (choice == 1) {
-			managerLogin();
-		} else {
-			System.out.println("Please select 1 to go into manager login section");
-			main(null);
-		}
+        int choice = sc.nextInt();
+        if (choice == 1) {
+            managerLogin();
+        } else if (choice == 2) {
+            System.out.println("Application terminated");
+            System.exit(0);
+        } else {
+            System.out.println("Please select 1 to go into manager login section");
+            main(null);
+        }
 
-	}
+    }
 
-	public static void managerLogin() {
-		System.out.println("Welcome to Manager page \n -------------");
+    public static void managerLogin() {
+        System.out.println("Welcome to Manager page \n -------------");
 
-		// System.out.println(service.test());
-		System.out.println("Enter your username:");
-		String username = sc.next();
-		
+        // System.out.println(service.test());
+        System.out.println("Enter your username:");
+        String username = sc.next();
 
-		System.out.println("Enter your password:");
-		String password = sc.next();
-		try {
-			if (service.login(username, password)) {
-				System.out.println("You have logged in");
-			} else {
-				managerLogin();
-			}
-		} catch (ExceptionHandler e) {
-			System.out.println("Error detected:---->" + e.getMessage());
-			managerLogin();
-		}
 
-	}
+        System.out.println("Enter your password:");
+        String password = sc.next();
+        try {
+            if (service.login(username, password)) {
+                System.out.println("You have logged in");
+                managerScreen();
+            } else {
+                managerLogin();
+            }
+        } catch (ExceptionHandler e) {
+            System.out.println("Error detected:---->" + e.getMessage());
+            managerLogin();
+        }
 
-	public static void managerLogOut() {
-	}
+    }
+
+    public static void managerScreen() {
+        System.out.println("Please select an option \n -----------------");
+        System.out.println("Press 1.Add new employee \n -----------------");
+        System.out.println("Press 2.Update existing employee \n -----------------");
+        System.out.println("Press 3.Search for an employee \n -----------------");
+        System.out.println("Press 4.Delete an employee \n -----------------");
+        System.out.println("Press 5.Log out \n -----------------");
+
+        int choice = sc.nextInt();
+        if (choice == 1) {
+            addEmployee();
+        } else if (choice == 2) {
+            updateEmployee();
+        } else if (choice == 3) {
+            searchEmployee();
+        } else if (choice == 4) {
+            deleteEmployee();
+        } else if (choice == 5) {
+            logOut();
+        } else {
+            System.out.println("-----------------------");
+            System.out.println("Please select one of the option above \n -------------------");
+            managerScreen();
+        }
+
+//		System.out.println("-------------------------");
+
+
+    }
+
+    public static void addEmployee() {
+
+    }
+
+    public static void updateEmployee() {
+
+    }
+
+    public static void searchEmployee() {
+
+    }
+
+    public static void deleteEmployee() {
+
+    }
+
+    public static void logOut() {
+
+        try {
+
+            System.out.println("Enter the username to logout");
+            String choice = sc.next();
+            if (service.logout(choice)) {
+
+
+                System.out.println("Are you sure you want to log out? If yes press y and if no press n");
+
+                String choice1 = sc.next();
+                if (choice1.equalsIgnoreCase("y")) {
+                    managerLogin();
+                } else if (choice1.equalsIgnoreCase("n")) {
+                    managerScreen();
+                }
+            }
+
+
+
+        }
+        catch (ExceptionHandler e){
+            System.out.println(e.getMessage());
+            count++;
+            if (count == 3) {
+                System.out.println("Application has been terminated because you inputted the wrong username more than twice ");
+                System.exit(0);
+            }
+            System.out.println("Logout unsuccessful");
+            logOut();
+        }
+
+
+
+    }
 
 }

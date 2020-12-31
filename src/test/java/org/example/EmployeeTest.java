@@ -16,7 +16,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 /**
  * Unit test for simple App.
  */
-@RunWith(MockitoJUnitRunner.class)
+//@RunWith(MockitoJUnitRunner.class)
 public class EmployeeTest {
     ServiceImpl service = new ServiceImpl();
 
@@ -52,6 +52,30 @@ public class EmployeeTest {
 
 
     }
+    @Test
+    public void login03(){
+
+        assertEquals(true,service.login("admin","password"));
+    }
+
+
+    @Test
+    public void logout01(){
+        Throwable exception = assertThrows(
+                ExceptionHandler.class, () -> {
+                    service.logout("adminW");
+                }
+        );
+        assertEquals("Invalid Username",exception.getMessage());
+
+    }
+
+    @Test
+    public void logout02(){
+        assertEquals(true,service.logout("admin"));
+    }
+
+
 
 
 }
