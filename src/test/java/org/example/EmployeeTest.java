@@ -327,6 +327,235 @@ public class EmployeeTest {
 
 
 
+    @Test
+    public void updateEmployee01() throws Exception {
+        Employee emp = new Employee("a", "daniel", "A001", 24, "0871231231", "oje@gmail.com");
+        Database db = mock(Database.class);
+        when(db.badgeNumberExist(emp.getBadgeNo())).thenReturn(true);
+
+        Throwable exception = assertThrows(
+                ExceptionHandler.class, () -> {
+                    service.updateEmployee(emp, db);
+                }
+        );
+        assertEquals("First name is invalid", exception.getMessage());
+    }
+
+    @Test
+    public void updateEmployee02() {
+        Employee emp = new Employee("aaaaaaaaaaaaaaaa", "daniel", "A001", 24, "0871231231", "oje@gmail.com");
+        Database db = mock(Database.class);
+        when(db.badgeNumberExist(emp.getBadgeNo())).thenReturn(true);
+        Throwable exception = assertThrows(
+                ExceptionHandler.class, () -> {
+                    service.updateEmployee(emp, db);
+                }
+        );
+        assertEquals("First name is invalid", exception.getMessage());
+
+    }
+
+    @Test
+    public void updateEmployee03() {
+
+        Employee emp = new Employee("aaaaaa12", "daniel", "A001", 24, "0871231231", "oje@gmail.com");
+        Database db = mock(Database.class);
+        when(db.badgeNumberExist(emp.getBadgeNo())).thenReturn(true);
+        Throwable exception = assertThrows(
+                ExceptionHandler.class, () -> {
+                    service.updateEmployee(emp, db);
+                }
+        );
+        assertEquals("First name is invalid", exception.getMessage());
+    }
+
+    @Test
+    public void updateEmployee04() {
+
+        Employee emp = new Employee("Ayo", "d", "A001", 24, "0871231231", "oje@gmail.com");
+        Database db = mock(Database.class);
+        when(db.badgeNumberExist(emp.getBadgeNo())).thenReturn(true);
+        Throwable exception = assertThrows(
+                ExceptionHandler.class, () -> {
+                    service.updateEmployee(emp, db);
+                }
+        );
+        assertEquals("Last name is invalid", exception.getMessage());
+
+    }
+
+    @Test
+    public void updateEmployee05() {
+
+        Employee emp = new Employee("Ayo", "dddddddddddd", "A001", 24, "0871231231", "oje@gmail.com");
+        Database db = mock(Database.class);
+        when(db.badgeNumberExist(emp.getBadgeNo())).thenReturn(true);
+        Throwable exception = assertThrows(
+                ExceptionHandler.class, () -> {
+                    service.updateEmployee(emp, db);
+                }
+        );
+        assertEquals("Last name is invalid", exception.getMessage());
+
+    }
+
+    @Test
+    public void updateEmployee06() {
+
+        Employee emp = new Employee("Ayo", "ddd12", "A001", 24, "0871231231", "oje@gmail.com");
+        Database db = mock(Database.class);
+        when(db.badgeNumberExist(emp.getBadgeNo())).thenReturn(true);
+        Throwable exception = assertThrows(
+                ExceptionHandler.class, () -> {
+                    service.updateEmployee(emp, db);
+                }
+        );
+        assertEquals("Last name is invalid", exception.getMessage());
+    }
+
+
+
+    @Test
+    public void updateEmployee07() {
+        Employee emp = new Employee("Ayo", "Daniel", "A002", 16, "0871231231", "oje@gmail.com");
+        Database db = mock(Database.class);
+        when(db.badgeNumberExist(emp.getBadgeNo())).thenReturn(true);
+        Throwable exception = assertThrows(
+                ExceptionHandler.class, () -> {
+                    service.updateEmployee(emp, db);
+                }
+        );
+        assertEquals("Age is invalid", exception.getMessage());
+
+
+    }
+
+    @Test
+    public void updateEmployee08() {
+        Employee emp = new Employee("Ayo", "Daniel", "A002", 75, "0871231231", "oje@gmail.com");
+        Database db = mock(Database.class);
+        when(db.badgeNumberExist(emp.getBadgeNo())).thenReturn(true);
+        Throwable exception = assertThrows(
+                ExceptionHandler.class, () -> {
+                    service.updateEmployee(emp, db);
+                }
+        );
+        assertEquals("Age is invalid", exception.getMessage());
+    }
+
+    @Test
+    public void updateEmployee09() {
+        Employee emp = new Employee("Ayo", "Daniel", "A002", 19, "0871231231111", "oje@gmail.com");
+        Database db = mock(Database.class);
+        when(db.badgeNumberExist(emp.getBadgeNo())).thenReturn(true);
+        Throwable exception = assertThrows(
+                ExceptionHandler.class, () -> {
+                    service.updateEmployee(emp, db);
+                }
+        );
+        assertEquals("Phone number is invalid", exception.getMessage());
+    }
+
+    @Test
+    public void updateEmployee10() {
+        Employee emp = new Employee("Ayo", "Daniel", "A002", 19, "08712312", "oje@gmail.com");
+        Database db = mock(Database.class);
+        when(db.badgeNumberExist(emp.getBadgeNo())).thenReturn(true);
+        Throwable exception = assertThrows(
+                ExceptionHandler.class, () -> {
+                    service.updateEmployee(emp, db);
+                }
+        );
+        assertEquals("Phone number is invalid", exception.getMessage());
+    }
+
+    @Test
+    public void updateEmployee11() {
+        Employee emp = new Employee("Ayo", "Daniel", "A002", 19, "087123121e1", "oje@gmail.com");
+
+        Database db = mock(Database.class);
+        when(db.badgeNumberExist(emp.getBadgeNo())).thenReturn(true);
+        Throwable exception = assertThrows(
+                ExceptionHandler.class, () -> {
+                    service.updateEmployee(emp, db);
+                }
+        );
+        assertEquals("Phone number is invalid", exception.getMessage());
+
+    }
+
+    @Test
+    public void updateEmployee12() {
+        Employee emp = new Employee("Ayo", "Daniel", "A002", 19, "0871231231", "ojegmail.com");
+
+        Database db = mock(Database.class);
+        when(db.badgeNumberExist(emp.getBadgeNo())).thenReturn(true);
+        Throwable exception = assertThrows(
+                ExceptionHandler.class, () -> {
+                    service.updateEmployee(emp, db);
+                }
+        );
+        assertEquals("Email is invalid", exception.getMessage());
+
+    }
+
+    @Test
+    public void updateEmployee13() {
+        Employee emp = new Employee("Ayo", "Daniel", "A002", 19, "0871231231", "ojegmail.com");
+
+        Database db = mock(Database.class);
+        when(db.badgeNumberExist(emp.getBadgeNo())).thenReturn(true);
+        Throwable exception = assertThrows(
+                ExceptionHandler.class, () -> {
+                    service.updateEmployee(emp, db);
+                }
+        );
+        assertEquals("Email is invalid", exception.getMessage());
+
+    }
+
+    @Test
+    public void updateEmployee14() {
+        Employee emp = new Employee("Ayo", "Daniel", "A002", 19, "0871231231", "oje@gmailcom");
+
+        Database db = mock(Database.class);
+        when(db.badgeNumberExist(emp.getBadgeNo())).thenReturn(true);
+        Throwable exception = assertThrows(
+                ExceptionHandler.class, () -> {
+                    service.updateEmployee(emp, db);
+                }
+        );
+        assertEquals("Email is invalid", exception.getMessage());
+
+    }
+    @Test
+    public void updateEmployee15() {
+        Employee emp = new Employee("Ayo", "Daniel", "A002", 19, "0871231231", "oje@gmailcom");
+
+        Database db = mock(Database.class);
+
+        //when(db.findEmployeeByBadge("A002")).thenReturn("A value");
+        when(db.badgeNumberExist(emp.getBadgeNo())).thenReturn(false);
+        Throwable exception = assertThrows(
+                ExceptionHandler.class, () -> {
+                    service.updateEmployee(emp, db);
+                }
+        );
+//        assertEquals("Badge Number already exist", exception.getMessage());
+        assertEquals("Badge Number doesnt exist",exception.getMessage());
+    }
+
+    @Test
+    public void updateEmployee16() {
+        Employee emp = new Employee("Ayo", "Daniel", "A002", 19, "0871231231", "oje@gmail.com");
+        Database db = mock(Database.class);
+        when(db.badgeNumberExist(emp.getBadgeNo())).thenReturn(true);
+
+        assertEquals(true, service.updateEmployee(emp, db));
+
+    }
+
+
 
 
 
