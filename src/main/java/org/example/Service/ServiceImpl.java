@@ -64,8 +64,23 @@ public class ServiceImpl implements Service {
     }
 
     @Override
-    public Boolean searchEmployee(String BadgeNo,Database db) {
-        return null;
+    public String searchEmployee(String BadgeNo,Database db) {
+        String res="";
+
+
+        if(!db.badgeNumberExist(BadgeNo)){
+            //System.out.println(false);
+            throw new ExceptionHandler("Badge Number doesnt exist");
+        }
+        else{
+            Employee employee= db.findEmployeeByBadge(BadgeNo);
+            res="Employee FirstName: "+employee.getFirstName()+"\n Employee LastName: "+employee.getLastName()+"\n Employee Age: "+employee.getAge()+"\n Employee BadgeNo: "+employee.getBadgeNo()+"\n Employee Email: "+employee.getEmail()+"\n Employee Phone Number: "+employee.getPhoneNumber()+"\n";
+            //res=db.findEmployeeByBadge(BadgeNo);
+        }
+
+
+
+        return res;
     }
 
     @Override

@@ -65,7 +65,8 @@ public class Database {
     }
 
 
-    public  String findEmployeeByBadge(String badge){
+    public  Employee findEmployeeByBadge(String badge){
+        Employee employee= new Employee();
         String res="";
         String firstname = "",lastname="",badgeno="",phonenumber="",email="";
         int age=0;
@@ -84,18 +85,24 @@ public class Database {
                 phonenumber=rs.getString(7);
 
             }
-            res=firstname+" "+lastname+" "+age+" "+badgeno+" "+email+" "+phonenumber+"";
+            employee.setFirstName(firstname);
+            employee.setLastName(lastname);
+            employee.setPhoneNumber(phonenumber);
+            employee.setEmail(email);
+            employee.setBadgeNo(badgeno);
+            employee.setAge(age);
+            //res="Employee FirstName: "+firstname+"\n Employee LastName: "+lastname+"\n Employee Age: "+age+"\n Employee BadgeNo: "+badgeno+"\n Employee Email: "+email+"\n Employee Phone Number: "+phonenumber+"\n";
         } catch (Exception e1) {
             System.out.println(e1.getMessage());
         }
 
 
 
-        return res;
+        return employee;
     }
 
     public  boolean badgeNumberExist(String badge){
-        if(findEmployeeByBadge(badge).trim().matches("0")){
+        if(findEmployeeByBadge(badge).getFirstName().trim().matches("")){
             //System.out.println(false);
             return false;
         }

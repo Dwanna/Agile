@@ -9,7 +9,7 @@ public interface Service {
     Boolean login(String username, String password);
     Boolean logout(String username);
     Boolean createEmployee(Employee employee, Database db);
-    Boolean searchEmployee(String BadgeNo,Database db);
+    String searchEmployee(String BadgeNo,Database db);
     Boolean updateEmployee(Employee employee,Database db);
     Boolean deleteEmployee(String BadgeNo,Database db);
 }

@@ -175,10 +175,37 @@ public class MainClass {
 
     public static void searchEmployee() {
 
+        System.out.println("----------- \n To Search employee by their badge number \n ---------");
+        System.out.println("Please enter employee's badge number to get employee's details\n -----------");
+        String badgeNo=sc.next();
+        try{
+            System.out.println(service.searchEmployee(badgeNo,db));
+            managerScreen();
+        }
+        catch (ExceptionHandler e){
+            System.out.println("---------------- \n " + e.getMessage() + "\n ------------------");
+            managerScreen();
+        }
+
     }
 
     public static void deleteEmployee() {
+        System.out.println("----------- \n To Delete employee by their badge number \n ---------");
 
+        System.out.println("----------- \n Are you sure you want to delete an employee, press y for yes or n for no: \n ---------");
+        String choice= sc.next();
+        if(choice.equalsIgnoreCase("y")) {
+
+            System.out.println("--------- \n Please enter employee's badge number to get employee's details\n -----------");
+            String badgeNo = sc.next();
+        }
+        else if(choice.equalsIgnoreCase("n")){
+            managerScreen();
+        }
+        else{
+            System.out.println("--------- \n Please choose a suitable option:\n -----------");
+            deleteEmployee();
+        }
     }
 
     public static void logOut() {
