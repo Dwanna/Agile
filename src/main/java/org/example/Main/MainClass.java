@@ -1,5 +1,7 @@
 package org.example.Main;
 
+import org.example.Dao.Database;
+import org.example.Entity.Employee;
 import org.example.Exception.ExceptionHandler;
 import org.example.Service.ServiceImpl;
 
@@ -9,9 +11,11 @@ import java.util.Scanner;
 public class MainClass {
     static Scanner sc = new Scanner(System.in);
     static ServiceImpl service = new ServiceImpl();
-    static int count=0;
+    static Database db = new Database();
+    static int count = 0;
 
     public static void main(String args[]) {
+        db.initDBConnection();
         System.out.println("Select an Option");
         System.out.println("Press 1.Login for manager");
         System.out.println("Press 2.Exit");
@@ -84,10 +88,88 @@ public class MainClass {
     }
 
     public static void addEmployee() {
+        System.out.println("Enter employee details \n --------------");
+
+        System.out.println("Enter employee's first name \n -------------");
+        String firstName = sc.next();
+
+        System.out.println("Enter employee's last name \n ---------------");
+        String lastName = sc.next();
+
+        System.out.println("Enter employee's Age \n -------------------");
+        int age = sc.nextInt();
+
+        System.out.println("Enter employee's email address \n ------------------");
+        String email = sc.next();
+
+        System.out.println("Enter employee's phone number \n -------------------");
+        String phoneNumber = sc.next();
+
+        System.out.println("Enter employee's badge number \n -----------------");
+        String badgeNumber = sc.next();
+
+        Employee employee = new Employee();
+        employee.setFirstName(firstName);
+        employee.setLastName(lastName);
+        employee.setAge(age);
+        employee.setEmail(email);
+        employee.setBadgeNo(badgeNumber);
+        employee.setPhoneNumber(phoneNumber);
+
+        try {
+            if (service.createEmployee(employee, db)) {
+                System.out.println("------- \n Employee has been created \n ------");
+                managerScreen();
+
+            }
+        } catch (ExceptionHandler e) {
+            System.out.println("|---------------|");
+            System.out.println(e.getMessage());
+            managerScreen();
+        }
+
 
     }
 
     public static void updateEmployee() {
+        System.out.println("To Update employee by their badge number \n ---------");
+        System.out.println("Please enter employee's badge number to update employee's details\n -----------");
+        String badgeNumber = sc.next();
+
+        System.out.println("Enter employee's first name \n -------------");
+        String firstName = sc.next();
+
+        System.out.println("Enter employee's last name \n ---------------");
+        String lastName = sc.next();
+
+        System.out.println("Enter employee's Age \n -------------------");
+        int age = sc.nextInt();
+
+        System.out.println("Enter employee's email address \n ------------------");
+        String email = sc.next();
+
+        System.out.println("Enter employee's phone number \n -------------------");
+        String phoneNumber = sc.next();
+
+        Employee employee = new Employee();
+        employee.setFirstName(firstName);
+        employee.setLastName(lastName);
+        employee.setAge(age);
+        employee.setEmail(email);
+        employee.setBadgeNo(badgeNumber);
+        employee.setPhoneNumber(phoneNumber);
+
+        try {
+            if (service.updateEmployee(employee, db)) {
+                System.out.println("|--- Employee's details has been successfully updated");
+                managerScreen();
+            }
+
+        } catch (ExceptionHandler e) {
+            System.out.println("---------------- \n " + e.getMessage() + "\n ------------------");
+            managerScreen();
+        }
+
 
     }
 
@@ -119,9 +201,7 @@ public class MainClass {
             }
 
 
-
-        }
-        catch (ExceptionHandler e){
+        } catch (ExceptionHandler e) {
             System.out.println(e.getMessage());
             count++;
             if (count == 3) {
@@ -131,7 +211,6 @@ public class MainClass {
             System.out.println("Logout unsuccessful");
             logOut();
         }
-
 
 
     }

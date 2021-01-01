@@ -14,6 +14,14 @@ public class Employee {
 
     }
 
+    public Employee(String firstName, String lastName, String badgeNo, int age, String phoneNumber, String email) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.badgeNo = badgeNo;
+        this.age = age;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+    }
 
     public String getFirstName() {
         return firstName;
