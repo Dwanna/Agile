@@ -580,6 +580,29 @@ public class EmployeeTest {
         assertEquals(res,service.searchEmployee("A002",db) );
     }
 
+    public void deleteEmployee01(){
+        Database db = mock(Database.class);
+        when(db.badgeNumberExist("A002")).thenReturn(false);
+
+        Throwable exception = assertThrows(
+                ExceptionHandler.class, () -> {
+                    service.deleteEmployee("A003", db);
+                }
+        );
+        assertEquals("Badge Number doesnt exist", exception.getMessage());
+    }
+
+    @Test
+    public void deleteEmployee02(){
+        Employee employee= new Employee("Daniel","Ojeaburu","A001",25,"088234567","jke@gmail.com");
+        Database db = mock(Database.class);
+        when(db.badgeNumberExist("A002")).thenReturn(true);
+        when(db.findEmployeeByBadge("A002")).thenReturn(employee);
+
+
+        assertEquals(true,service.deleteEmployee("A002",db) );
+    }
+
 
 
 

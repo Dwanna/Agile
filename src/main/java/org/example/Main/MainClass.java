@@ -198,6 +198,17 @@ public class MainClass {
 
             System.out.println("--------- \n Please enter employee's badge number to get employee's details\n -----------");
             String badgeNo = sc.next();
+
+            try{
+               service.deleteEmployee(badgeNo,db);
+               System.out.println("Employee has been successfully deleted");
+               managerScreen();
+
+            }
+            catch (ExceptionHandler e){
+                System.out.println("---------------- \n " + e.getMessage() + "\n ------------------");
+                managerScreen();
+            }
         }
         else if(choice.equalsIgnoreCase("n")){
             managerScreen();

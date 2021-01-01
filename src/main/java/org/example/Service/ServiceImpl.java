@@ -112,6 +112,21 @@ public class ServiceImpl implements Service {
 
     @Override
     public Boolean deleteEmployee(String BadgeNo,Database db) {
-        return null;
+        boolean res=false;
+
+
+        if(!db.badgeNumberExist(BadgeNo)){
+            //System.out.println(false);
+            throw new ExceptionHandler("Badge Number doesnt exist");
+        }
+        else{
+            res=true;
+            db.deleteEmployee(BadgeNo);
+
+        }
+
+
+
+        return res;
     }
 }

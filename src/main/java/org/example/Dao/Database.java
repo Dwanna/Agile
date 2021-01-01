@@ -63,6 +63,20 @@ public class Database {
         }
         return false;
     }
+    public boolean deleteEmployee(String badgeNo) {
+
+
+
+        String cmd = "delete from EmployeeTable where badgeno='"+badgeNo+"';";
+        try {
+            stmt.executeUpdate(cmd);
+
+            return true;
+        } catch (Exception e1) {
+            System.out.println(e1.getMessage());
+        }
+        return false;
+    }
 
 
     public  Employee findEmployeeByBadge(String badge){
