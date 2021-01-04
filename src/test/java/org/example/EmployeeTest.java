@@ -24,13 +24,7 @@ public class EmployeeTest {
     ServiceImpl service = new ServiceImpl();
 
 
-    /**
-     * Rigorous Test :-)
-     */
-    @Test
-    public void shouldAnswerWithTrue() {
-        assertTrue(true);
-    }
+
 
 
     @Test

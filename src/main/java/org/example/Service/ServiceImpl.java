@@ -103,7 +103,7 @@ public class ServiceImpl implements Service {
         }
         else{
             res=true;
-            //db.createEmployee(employee);
+            db.updateEmployee(employee);
 
 
         }
